@@ -39,6 +39,15 @@
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
             </div>
+            <div class="form-group mb-4">
+                <p>Tags</p>
+                @foreach ($tags as $tag)
+                    <div class="form-check-inline">
+                        <input type="checkbox" class="form-check-input" id="{{$tag->slug}}" name="tags[]" value="{{$tag->id}}">
+                        <label class="form-check-label" for="{{$tag->slug}}">{{$tag->name}}</label>
+                    </div>
+                @endforeach
+            </div>
             {{-- <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="image">Upload</span>
@@ -48,7 +57,7 @@
                     <label class="custom-file-label" for="image">Choose file</label>
                 </div>
             </div> --}}
-            <button type="submit" class="btn btn-primary">Crea</button>
+            <button type="submit" class="btn btn-primary px-4 py-2">Crea</button>
         </form>
     </div>
 @endsection
