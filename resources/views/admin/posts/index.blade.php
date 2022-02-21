@@ -13,6 +13,7 @@
                 <th scope="col">Slug</th>
                 <th scope="col">Stato</th>
                 <th scope="col">Categoria</th>
+                <th scope="col">Tags</th>
                 <th scope="col">Actions</th>
                 {{-- Altrimenti i bordi fanno schifo --}}
                 <th scope="col"></th>
@@ -34,6 +35,17 @@
                         <td><span class="badge badge-primary py-1 px-2">{{$post->category->name}}</span></td>
                     @else
                         <td><span class="badge badge-warning py-1 px-2">Nessuna categoria</span></td>
+                    @endif
+                    @if (count($post->tags))
+                        <td>
+                            <ul class="list-unstyled">
+                                @foreach ($post->tags as $tag)
+                                    <li><span class="badge badge-primary py-1 px-2">{{$tag->name}}</span></li>
+                                @endforeach
+                            </ul>
+                        </td>
+                    @else
+                        <td><span class="badge badge-warning py-1 px-2">No Tag</span></td>
                     @endif
                     <td>
                         <a href="{{route("posts.show", $post->id)}}"><button type="button" class="btn btn-primary">Più info</button></a>
