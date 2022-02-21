@@ -18,6 +18,7 @@ class PostController extends Controller
         "content" => "required",
         "published" => "sometimes|accepted",
         "category_id" => "nullable|exists:categories,id",
+        "tags" => "nullable|exists:tags,id",
         // Unable to guess the MIME type as no guessers are available (have you enabled the php_fileinfo extension?).
         // "image" => "nullable|image|mime:jpeg,jpg,bmp,png|max:2048"
     ];
@@ -68,6 +69,10 @@ class PostController extends Controller
         if (isset($data["image"])) {
             $path_image = Storage::put("uploads", $data["image"]);
             $newPost->image = $path_image;
+        }
+
+        if (isset($data["tags"])){
+            $newPost->tags()->sync($data["tags"]);
         }
 
         // Redirect al post appena creato
