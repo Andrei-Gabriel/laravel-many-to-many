@@ -21,7 +21,7 @@
                                                 @if ($post->category)
                                                     <span class="badge badge-primary py-1 px-2">{{$post->category->name}}</span>
                                                 @else
-                                                    <span class="badge badge-warning py-1 px-2">Nessuna categoria assegnata</span>
+                                                    <span class="badge badge-warning py-1 px-2">Nessuna categoria</span>
                                                 @endif
                                             @else
                                                 <span class="badge badge-warning ml-2 mb-2 py-1 px-2">Draft</span>
@@ -29,9 +29,8 @@
                                         </li>
                                     @endforeach
                                 </ul>
-                                
                             @else
-                                <h4>Nessun post associato a questa categoria</h4>                             
+                                <h4>Nessun post associato a questo tag</h4>                             
                             @endif
                         </div>
                         <div class="container p-0 d-flex flex-row mt-3">
