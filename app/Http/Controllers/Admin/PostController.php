@@ -53,31 +53,13 @@ class PostController extends Controller
     {
         // Validazione dei dati
         $request->validate($this->ValidationsRules);
-    
-        // $request->validate([
-        //     "title" => "required|string|max:100",
-        //     "content" => "required",
-        //     "published" => "sometimes|accepted",
-        // ]);
 
         // Creazione del post
         $data = $request->all();
-        
         $newPost = new Post();
-        $newPost->title = $data["title"];
-        $newPost->content = $data["content"];
+        $newPost->fill($data);
         $newPost->published = isset($data["published"]) ? 1 : 0;
-        $newPost->category_id = $data["category_id"];
-
-        $slug = Str::of($newPost->title)->slug("-");
-        $count = 1;
-
-        while(Post::where("slug", $slug)->first()){
-            $slug = Str::of($newPost->title)->slug("-")."-$count";
-            $count++;
-        }
-
-        $newPost->slug = $slug;
+        $newPost->slug = $this->getSlug($newPost->title);
         $newPost->save();
 
         // Se presente, salvo img
@@ -124,11 +106,6 @@ class PostController extends Controller
     {
         // Validazione dei dati
         $request->validate($this->ValidationsRules);
-        // $request->validate([
-        //     "title" => "required|string|max:100",
-        //     "content" => "required",
-        //     "published" => "sometimes|accepted",
-        // ]);
 
         // Aggiorno il post
         $data = $request->all();
@@ -139,25 +116,11 @@ class PostController extends Controller
             $slug = Str::of($post->title)->slug("-");
             // Se lo slug generato è diverso dallo slug attualmente salvato nel db
             if($slug != $post->slug) {
-                $count = 1;
-                while(Post::where("slug", $slug)->first()){
-                    $slug = Str::of($post->title)->slug("-")."-$count";
-                    $count++;
-                }
-                $post->slug = $slug;
+                $post->slug = $this->getSlug($post->title);
             }
         }  
-        $post->content = $data["content"];
-        $post->category_id = $data["category_id"];
-
-
-        // if(isset($data["published"])) {
-        //     $post->published = true;
-        // } else {
-        //     $post->published = false;
-        // }
+        $post->fill($data);
         $post->published = isset($data["published"]);
-  
         $post->save();
 
         // Redirect al post modificato
@@ -174,5 +137,16 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect()->route("posts.index");
+    }
+
+    private function getSlug($titolo){
+        $slug = Str::of($titolo)->slug("-");
+        $count = 1;
+
+        while(Post::where("slug", $slug)->first()){
+            $slug = Str::of($titolo)->slug("-")."-$count";
+            $count++;
+        }
+        return $slug;
     }
 }
