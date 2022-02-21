@@ -11,7 +11,7 @@
                         <div class="mb-2">
                             <h5 class="mb-4">Slug: {{$category->slugCat}}</h5>
                             @if (count($category->posts)) {{-- Non serve > 0 --}}
-                                <h4>Lista posts associati:</h4>
+                                <h4>Lista posts associati: {{count($category->posts)}}</h4>
                                 <ul>
                                     @foreach ($category->posts as $post)
                                         <li>

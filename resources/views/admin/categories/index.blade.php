@@ -11,6 +11,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Slug</th>
+                    <th scope="col">N.</th>
                     <th scope="col">Actions</th>
                     {{-- Altrimenti i bordi fanno schifo --}}
                     <th scope="col"></th>
@@ -23,6 +24,7 @@
                         <th scope="row">{{$category->id}}</th>
                         <td>{{$category->name}}</td>
                         <td>{{$category->slugCat}}</td>
+                        <td>{{count($category->posts)}}</td>
                         <td>
                             <a href="{{route("categories.show", $category->id)}}"><button type="button" class="btn btn-primary">Più info</button></a>
                         </td>
