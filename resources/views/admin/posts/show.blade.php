@@ -29,7 +29,7 @@
                                 <span class="badge badge-warning py-1 px-2">No tag</span>
                             @endif
                         </div>
-                        {{$post->content}}
+                        <span>{{$post->content}}</span>
                         <div class="container p-0 d-flex flex-row mt-3">
                             <a href="{{route("posts.edit", $post->id)}}"><button type="button" class="btn btn-warning mr-3">Modifica</button></a>
                             <form action="{{route("posts.destroy", $post->id)}}" method="POST">
