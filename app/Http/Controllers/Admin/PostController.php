@@ -20,7 +20,7 @@ class PostController extends Controller
         "category_id" => "nullable|exists:categories,id",
         "tags" => "nullable|exists:tags,id",
         // Unable to guess the MIME type as no guessers are available (have you enabled the php_fileinfo extension?).
-        // "image" => "nullable|image|mime:jpeg,jpg,bmp,png|max:2048"
+        "image" => "nullable|image|mimes:jpeg,bmp,png|max:2048"
     ];
     /**
      * Display a listing of the resource.

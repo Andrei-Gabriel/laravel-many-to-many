@@ -51,7 +51,7 @@
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
             </div>
-            {{-- <div class="input-group mb-3">
+            <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="image">Upload</span>
                 </div>
@@ -59,7 +59,7 @@
                     <input type="file" class="custom-file-input" id="image" name="image">
                     <label class="custom-file-label" for="image">Choose file</label>
                 </div>
-            </div> --}}
+            </div>
             <button type="submit" class="btn btn-primary px-4 py-2">Crea</button>
         </form>
     </div>
