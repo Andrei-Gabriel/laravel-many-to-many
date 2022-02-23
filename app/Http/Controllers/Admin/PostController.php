@@ -19,7 +19,7 @@ class PostController extends Controller
         "published" => "sometimes|accepted",
         "category_id" => "nullable|exists:categories,id",
         "tags" => "nullable|exists:tags,id",
-        // Unable to guess the MIME type as no guessers are available (have you enabled the php_fileinfo extension?).
+        // RISOLTO: bisogna scommentare fileinfo in php.ini Unable to guess the MIME type as no guessers are available (have you enabled the php_fileinfo extension?).
         "image" => "nullable|image|mimes:jpeg,bmp,png|max:2048"
     ];
     /**
